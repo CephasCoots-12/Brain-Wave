@@ -1,11 +1,10 @@
 import streamlit as st
 from transformers import pipeline
 from memory import save_memory
-from vault import *
 from scraping import news
 from ui import *
 
-st.set_page_config(page_title="BrainWave AI 🔥", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="BrainWave AI 🔥", page_icon="🧠")
 
 chatbot = pipeline("text-generation", model="gpt2")
 
