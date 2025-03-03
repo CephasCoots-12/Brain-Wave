@@ -2,6 +2,7 @@ import streamlit as st
 from transformers import pipeline
 from memory import save_memory
 from scraping import get_news
+from vault import encrypt, decrypt
 
 st.set_page_config(page_title="BrainWave AI 🔥", page_icon="🧠")
 
@@ -19,8 +20,9 @@ if user_input:
     with st.spinner("BrainWave AI is Thinking..."):
         response = chatbot(user_input, max_length=100, do_sample=True)[0]["generated_text"]
         save_memory(user_input, response)
+        encrypted_response = encrypt(response)
         st.success("✅ BrainWave AI Answer")
-        st.write(response)
+        st.write(decrypt(encrypted_response))
 
 st.sidebar.title("🌐 Current Affairs")
 try:
