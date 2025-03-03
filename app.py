@@ -1,8 +1,8 @@
 import streamlit as st
 from transformers import pipeline
 from memory import save_memory
-from scraping import news
 from ui import *
+from scraping import get_news
 
 st.set_page_config(page_title="BrainWave AI 🔥", page_icon="🧠")
 
@@ -22,7 +22,12 @@ if user_input:
         st.write(response)
 
 st.sidebar.title("🌐 Current Affairs")
-st.sidebar.write(news)
+try:
+    news = get_news()
+    for headline in news:
+        st.sidebar.write(f"- {headline}")
+except Exception as e:
+    st.sidebar.write("News Unavailable 🔥")
 
 st.sidebar.markdown("---")
 st.sidebar.caption("BrainWave AI 🔥 | Powered by GPT-2 + RLHF")
