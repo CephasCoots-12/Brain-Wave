@@ -1,17 +1,18 @@
 import streamlit as st
 from transformers import pipeline
 from memory import save_memory
-from ui import *
 from scraping import get_news
 
 st.set_page_config(page_title="BrainWave AI 🔥", page_icon="🧠")
 
+# UI Function
+def show_ui():
+    st.title("🧠 BrainWave AI - The Future of AI Chatbots")
+    st.write("Ask Anything with Real-Time Web Scraping + Memory System + Secure Vault 🔐")
+
 chatbot = pipeline("text-generation", model="gpt2")
 
 show_ui()
-
-st.title("🧠 BrainWave AI - The Future of AI Chatbots")
-st.write("Ask Anything with Real-Time Web Scraping + Memory System + Secure Vault 🔐")
 
 user_input = st.text_input("Type your message here...", placeholder="What's on your mind?")
 if user_input:
